@@ -6,7 +6,7 @@
 ## 산출물 경로
 
 ```
-claude_docs/
+claude_output_docs/
 └── claude_md_review.md    # 리뷰 결과 (누적 기록)
 ```
 
@@ -61,7 +61,7 @@ echo -e "\033[36m[CLAUDE-MD-REVIEW STEP N] <단계명>\033[0m"
 
 ### 3. 결과 기록
 
-`claude_docs/claude_md_review.md`에 아래 형식으로 기록한다.
+`claude_output_docs/claude_md_review.md`에 아래 형식으로 기록한다.
 
 #### 누적 기록 규칙
 - 파일 최상단 제목(`# CLAUDE.md Review`)은 최초 1회만 작성한다.
