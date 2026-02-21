@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(pip install:*)",
+      "Bash(python -m pytest:*)",
+      "Bash(/mnt/d/workspace/claude_code_test/claude_task/20260218-002/check/check.md:*)"
+    ]
+  }
+}

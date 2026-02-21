@@ -1,0 +1,39 @@
+import pytest
+import sys
+import os
+
+sys.path.insert(0, os.path.dirname(__file__))
+
+from fibonacci import fibonacci, fibonacci_sequence
+
+
+class TestFibonacci:
+    def test_fibonacci_0(self):
+        assert fibonacci(0) == 0
+
+    def test_fibonacci_1(self):
+        assert fibonacci(1) == 1
+
+    def test_fibonacci_2(self):
+        assert fibonacci(2) == 1
+
+    def test_fibonacci_10(self):
+        assert fibonacci(10) == 55
+
+    def test_fibonacci_negative(self):
+        with pytest.raises(ValueError):
+            fibonacci(-1)
+
+
+class TestFibonacciSequence:
+    def test_sequence_0(self):
+        assert fibonacci_sequence(0) == []
+
+    def test_sequence_1(self):
+        assert fibonacci_sequence(1) == [0]
+
+    def test_sequence_5(self):
+        assert fibonacci_sequence(5) == [0, 1, 1, 2, 3]
+
+    def test_sequence_10(self):
+        assert fibonacci_sequence(10) == [0, 1, 1, 2, 3, 5, 8, 13, 21, 34]

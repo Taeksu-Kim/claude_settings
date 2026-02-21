@@ -1,0 +1,73 @@
+"""
+워크플로우 파일에 리뷰 히스토리 누적 기록 규칙이 올바르게 반영되었는지 검증한다.
+"""
+import pathlib
+
+BASE = pathlib.Path(__file__).resolve().parents[2]
+
+PLAN_REVIEW = BASE / ".claude/workflows/plan-review/workflow.md"
+CODE_REVIEW = BASE / ".claude/workflows/code-review/workflow.md"
+DOCUMENTATION = BASE / ".claude/workflows/documentation/workflow.md"
+
+
+def _read(path: pathlib.Path) -> str:
+    return path.read_text(encoding="utf-8")
+
+
+# --- 공통 규칙: 3개 워크플로우 모두에 누적 기록 규칙이 존재하는지 ---
+
+class TestPlanReviewHistory:
+    def test_has_cumulative_rule(self):
+        content = _read(PLAN_REVIEW)
+        assert "누적" in content, "plan-review에 누적 기록 규칙이 없음"
+
+    def test_has_separator(self):
+        content = _read(PLAN_REVIEW)
+        assert "---" in content, "plan-review에 사이클 구분선(---) 없음"
+
+    def test_has_previous_feedback_reference(self):
+        content = _read(PLAN_REVIEW)
+        assert "이전 사이클" in content, "plan-review에 이전 사이클 피드백 참조 규칙이 없음"
+
+    def test_no_delete_rule(self):
+        content = _read(PLAN_REVIEW)
+        assert "삭제하지 않" in content or "삭제/수정하지 않" in content, \
+            "plan-review에 이전 내용 삭제 금지 규칙이 없음"
+
+
+class TestCodeReviewHistory:
+    def test_has_cumulative_rule(self):
+        content = _read(CODE_REVIEW)
+        assert "누적" in content, "code-review에 누적 기록 규칙이 없음"
+
+    def test_has_separator(self):
+        content = _read(CODE_REVIEW)
+        assert "---" in content, "code-review에 사이클 구분선(---) 없음"
+
+    def test_has_previous_feedback_reference(self):
+        content = _read(CODE_REVIEW)
+        assert "이전 사이클" in content, "code-review에 이전 사이클 피드백 참조 규칙이 없음"
+
+    def test_no_delete_rule(self):
+        content = _read(CODE_REVIEW)
+        assert "삭제하지 않" in content or "삭제/수정하지 않" in content, \
+            "code-review에 이전 내용 삭제 금지 규칙이 없음"
+
+
+class TestDocumentationReviewHistory:
+    def test_has_cumulative_rule(self):
+        content = _read(DOCUMENTATION)
+        assert "누적" in content, "documentation에 누적 기록 규칙이 없음"
+
+    def test_has_separator(self):
+        content = _read(DOCUMENTATION)
+        assert "---" in content, "documentation에 사이클 구분선(---) 없음"
+
+    def test_has_previous_feedback_reference(self):
+        content = _read(DOCUMENTATION)
+        assert "이전 사이클" in content, "documentation에 이전 사이클 피드백 참조 규칙이 없음"
+
+    def test_no_delete_rule(self):
+        content = _read(DOCUMENTATION)
+        assert "삭제하지 않" in content or "삭제/수정하지 않" in content, \
+            "documentation에 이전 내용 삭제 금지 규칙이 없음"
