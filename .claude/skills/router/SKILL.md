@@ -20,6 +20,7 @@ user-invocable: true
 |----------|------|------|
 | code-work | `.claude/workflows/code-work/workflow.md` | 코드 파일을 생성, 수정, 리팩토링 등 코드 작업이 발생하는 모든 상황에서 반드시 호출 |
 | documentation | `.claude/workflows/documentation/workflow.md` | README, API 문서, 아키텍처 문서, 가이드 등 문서 작성/갱신 요청 시 호출 |
+| claude-md-review | `.claude/workflows/claude-md-review/workflow.md` | CLAUDE.md의 품질 검토 및 개선점 제시 요청 시 호출 |
 
 ## 라우팅 흐름
 
